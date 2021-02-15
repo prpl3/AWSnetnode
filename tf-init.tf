@@ -1,5 +1,5 @@
 provider "aws" {
-  region = var.aws_region
+  region = var.default_aws_region
 }
 
 resource "random_pet" "table_name" {}
