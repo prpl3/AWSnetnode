@@ -11,9 +11,7 @@ module "vpc" {
   name = join("-",compact([ var.project_name,var.environment,var.whoami]))
   cidr = "10.0.0.0/16"
 
-  count = 3
-
-  azs             = [data.aws_availability_zones.available.names[count.index]] #["eu-central-1a", "eu-central-1b", "eu-central-1c"]
+  azs             = ["${var.default_aws_region}a", "${var.default_aws_region}b", "${var.default_aws_region}c"]
   private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
