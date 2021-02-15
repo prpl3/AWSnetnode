@@ -1,8 +1,9 @@
 ## TF Cloud variables ##############################
-variable "default_aws_region" { type = string }   ##
-variable "project_name" { type = string }        ##
-variable "db_read_capacity" { type = number }     ##
-variable "db_write_capacity" { type = number }    ##
+variable "default_aws_region" { type = string }
+variable "environment" { type = string } 
+variable "project_name" { type = string }
+variable "db_read_capacity" { type = number }
+variable "db_write_capacity" { type = number }
 ####################################################
 
 provider "aws" {
@@ -12,7 +13,7 @@ provider "aws" {
 resource "random_pet" "table_name" {}
 
 resource "aws_dynamodb_table" "tfc_example_table" {
-  name = join("-",compact([ var.project_name,var.ENVIRONMENT,random_pet.table_name.id])) 
+  name = join("-",compact([ var.project_name,var.environment,random_pet.table_name.id])) 
   
   read_capacity  = var.db_read_capacity
   write_capacity = var.db_write_capacity
@@ -31,7 +32,7 @@ resource "aws_dynamodb_table" "tfc_example_table" {
 }
 
 resource "aws_s3_bucket" "terraform_state_s3_bucket" {
-    bucket = join("-",compact([ var.project_name,var.ENVIRONMENT,"state","files" ]))
+    bucket = join("-",compact([ var.project_name,var.environment,"state","files" ]))
  
     versioning {
       enabled = true
