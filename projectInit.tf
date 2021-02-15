@@ -1,5 +1,5 @@
 ## TF Cloud variables ##############################
-variable "aws_profile" { type = string }
+# variable "aws_profile" { type = string }
 variable "default_aws_region" { type = string }
 variable "whoami" { type = string } 
 variable "environment" { type = string } 
