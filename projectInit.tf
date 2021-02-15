@@ -10,7 +10,6 @@ variable "db_write_capacity" { type = number }
 
 provider "aws" {
   region = var.default_aws_region
-  profile = var.aws_profile
 }
 
 resource "aws_dynamodb_table" "tfstate_table" {
