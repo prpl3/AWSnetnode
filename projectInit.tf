@@ -36,21 +36,10 @@ resource "aws_s3_bucket" "tfstate_s3" {
     bucket = join("-",compact([ var.project_name,var.environment,var.whoami,"s3"]))
  
     versioning {
-      enabled = true
+      enabled = false
     }
  
     lifecycle {
-      prevent_destroy = true
+      prevent_destroy = false
     }
 }
-
-# terraform {
-#   backend "s3" {
-#     bucket = "netnode-terraform-state-file-storage"
-#     profile = var.aws_profile
-#     key    = "netnode/space/infrastucture"
-#     region = "eu-central-1"
-#     dynamodb_table = "netnode-terraform-state-locking"
-#     encrypt = true # Optional, S3 Bucket Server Side Encryption
-#   }
-# }
