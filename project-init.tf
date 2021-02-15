@@ -12,7 +12,7 @@ provider "aws" {
 
 resource "random_pet" "table_name" {}
 
-resource "aws_dynamodb_table" "tfc_example_table" {
+resource "aws_dynamodb_table" "tfstate_table" {
   name = join("-",compact([ var.project_name,var.environment,random_pet.table_name.id])) 
   
   read_capacity  = var.db_read_capacity
@@ -31,7 +31,7 @@ resource "aws_dynamodb_table" "tfc_example_table" {
   }
 }
 
-resource "aws_s3_bucket" "terraform_state_s3_bucket" {
+resource "aws_s3_bucket" "tfstate_s3" {
     bucket = join("-",compact([ var.project_name,var.environment,"state","files" ]))
  
     versioning {
