@@ -1,15 +1,6 @@
-## TF Cloud variables ##############################
-# variable "aws_profile" { type = string }
-variable "default_aws_region" { type = string }
-variable "whoami" { type = string } 
-variable "environment" { type = string } 
-variable "project_name" { type = string }
-variable "db_read_capacity" { type = number }
-variable "db_write_capacity" { type = number }
-####################################################
-
 provider "aws" {
   region = var.default_aws_region
+  profile = var.aws_profile
 }
 
 resource "aws_dynamodb_table" "tfstate_table" {
