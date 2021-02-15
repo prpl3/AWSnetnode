@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_dynamodb_table" "tfstate_table" {
-  name = join("-",compact([ var.project_name,var.whoami,var.environment])) 
+  name = join("-",compact([ var.project_name,var.environment,var.whoami,"tfstate"])) 
   
   read_capacity  = var.db_read_capacity
   write_capacity = var.db_write_capacity
@@ -23,7 +23,7 @@ resource "aws_dynamodb_table" "tfstate_table" {
 }
 
 resource "aws_s3_bucket" "tfstate_s3" {
-    bucket = join("-",compact([ var.project_name,var.whoami,var.environment]))
+    bucket = join("-",compact([ var.project_name,var.environment,var.whoami]))
  
     versioning {
       enabled = false
