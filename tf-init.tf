@@ -1,5 +1,5 @@
 ## TF Cloud variables ##############################
-variable "aws_region" { type = string }           ##
+variable "default_aws_region" { type = string }   ##
 variable "db_table_name" { type = string }        ##
 variable "db_read_capacity" { type = number }     ##
 variable "db_write_capacity" { type = number }    ##
