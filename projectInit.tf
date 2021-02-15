@@ -3,6 +3,15 @@ provider "aws" {
   profile = var.aws_profile
 }
 
+module "iam_account" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-account"
+
+  account_alias = local.principl3_alias
+
+  minimum_password_length = 37
+  require_numbers         = false
+}
+
 resource "aws_dynamodb_table" "tfstate_table" {
   name = join("-",compact([ var.project_name,var.environment,var.whoami,"tfstate"])) 
   
