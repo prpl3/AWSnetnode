@@ -1,4 +1,4 @@
-output "Principl3_tag" { value = local.principl3_tags }
+output "Principl3_tag" { value = local.principl3_tag }
 
 output "tfstate_table" {
   value = aws_dynamodb_table.tfstate_table.arn
