@@ -17,5 +17,6 @@ module "vpc" {
     principl3_url = local.vpc_url
     storage_name = local.storage_name
     storage_url = local.storage_url
+    regions = "eu-central-1 | us-west-1"
   }
 }
