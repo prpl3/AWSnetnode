@@ -8,7 +8,6 @@ locals {
                         "-", compact([
                                 var.whoami,
                                 replace(var.principl3_tld,".","-"),
-                                "demo-vpc"
                                 ]))
 
         vpc_url = join( 
