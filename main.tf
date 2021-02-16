@@ -1,19 +1,9 @@
 provider "aws" {
-  region = var.default_aws_region
+  region = var.aws_region
   profile = var.aws_profile
 }
-
-module "iam_account" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-account"
-
-  account_alias = local.principl3_alias
-
-  minimum_password_length = 37
-  require_numbers         = false
-}
-
 resource "aws_dynamodb_table" "tfstate_table" {
-  name = join("-",compact([ var.project_name,var.environment,var.whoami,"tfstate"])) 
+  name = join("-",compact([local.vpc_name,"tfstate"])) 
   
   read_capacity  = var.db_read_capacity
   write_capacity = var.db_write_capacity
@@ -32,7 +22,7 @@ resource "aws_dynamodb_table" "tfstate_table" {
 }
 
 resource "aws_s3_bucket" "tfstate_s3" {
-    bucket = join("-",compact([ var.project_name,var.environment,var.whoami]))
+    bucket = local.storage_name
  
     versioning {
       enabled = false
